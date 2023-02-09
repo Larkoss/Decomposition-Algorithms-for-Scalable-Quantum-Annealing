@@ -22,17 +22,19 @@ for i in range(1):
     
     G = nx.gnp_random_graph(random.randint(66, 100), random.uniform(0.01, 0.99))
     G2 = copy.deepcopy(G)
-    print(len(G))
-    print(len(G2))
 
-    print("Original solution")
+    print("Original solution solution")
+    print("Graph size: ", len(G), "\n")
     #soln = len(minimum_vertex_cover_exact_solve_np_hard(G2))
-    solution_original = DBR(G2, 20, minimum_vertex_cover_exact_solve_np_hard)
-    print("Length of Original solution: ", len(solution_original))
+    solution_original = DBR(G, 20, minimum_vertex_cover_exact_solve_np_hard)
     #assert len(solution) == soln
     
-    print("\nCQM solution\n")
-    solution_cqm = DBR(G, 20, minimum_vertex_cover_cqm)
+    print("CQM solution")
+    print("Graph size: ", len(G2), "\n")
+    solution_cqm = DBR(G2, 20, minimum_vertex_cover_cqm)
+
+    print("Original solution: ", solution_original)
+    print("Length of Original solution: ", len(solution_original), "\n")
     print("CQM solution: ", solution_cqm)
     print("Length of exact solution: ", len(solution_cqm))
     #assert len(solution) == nx.graph_clique_number(G)

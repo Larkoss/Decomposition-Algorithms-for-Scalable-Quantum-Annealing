@@ -32,5 +32,5 @@ def minimum_vertex_cover_cqm(G):
         mvc_size = len(minimum_vertex_cover)
         break
     #print(minimum_vertex_cover)
-    print("=== Solver done ===") 
+    print("=== DWave done ===") 
     return minimum_vertex_cover
