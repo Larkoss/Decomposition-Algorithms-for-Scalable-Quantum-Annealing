@@ -50,5 +50,5 @@ for smpl, energy in sampleset.data(['sample','energy']):
     mvc_size = len(minimum_vertex_cover)
     break
 print(minimum_vertex_cover)
-print("SOLVER DONE") 
+print("Dwave Done") 
 

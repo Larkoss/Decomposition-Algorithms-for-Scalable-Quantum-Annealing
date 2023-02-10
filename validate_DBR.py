@@ -18,9 +18,11 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 	MC = maximum_clique_exact_solve_np_hard(GC)
 	return list(set(nodes)-set(MC))
 
-for i in range(1):
+f = open("results.txt", "w")
+
+for i in range(38):
     
-    G = nx.gnp_random_graph(random.randint(66, 100), random.uniform(0.01, 0.99))
+    G = nx.gnp_random_graph(i * 5 + 10, 0.2)
     G2 = copy.deepcopy(G)
 
     print("Original solution solution")
@@ -36,5 +38,8 @@ for i in range(1):
     print("Original solution: ", solution_original)
     print("Length of Original solution: ", len(solution_original), "\n")
     print("CQM solution: ", solution_cqm)
-    print("Length of exact solution: ", len(solution_cqm))
+    print("Length of cqm solution: ", len(solution_cqm),"\n")
     #assert len(solution) == nx.graph_clique_number(G)
+    f.write("Original: " + str(solution_original) + " CQM: " + str(solution_cqm))
+    #assert len(solution_cqm) == len(solution_original)
+f.close()

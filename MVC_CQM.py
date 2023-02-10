@@ -31,6 +31,6 @@ def minimum_vertex_cover_cqm(G):
         minimum_vertex_cover = [n for n, value in smpl.items() if value == 1 and not str(n).startswith('slack')]
         mvc_size = len(minimum_vertex_cover)
         break
-    #print(minimum_vertex_cover)
+    
     print("=== DWave done ===") 
     return minimum_vertex_cover

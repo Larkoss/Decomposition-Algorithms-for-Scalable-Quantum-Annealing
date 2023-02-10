@@ -50,5 +50,5 @@ for smpl, energy in sampleset.data(['sample','energy']):
     max_clique = [n for n, value in smpl.items() if value == 1 and not str(n).startswith('slack')]
     mc_size = len(max_clique)
     break
-print("=== Solver done ===") 
+print("=== DWave done ===") 
 print(max_clique)
