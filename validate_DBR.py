@@ -20,7 +20,7 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 
 f = open("results.txt", "w")
 
-for i in range(15):
+for i in range(38):
     
     G = nx.gnp_random_graph(i * 5 + 10, 0.2)
     G2 = copy.deepcopy(G)
@@ -46,7 +46,7 @@ for i in range(15):
     print("CQM solution: ", solution_cqm)
     print("Length of cqm solution: ", len(solution_cqm),"\n")
     #assert len(solution) == nx.graph_clique_number(G)
-    f.write("len Ori: " + str(len(solution_original)) + "len CQM: " + str(len(solution_cqm)))
-    f.write("Time Ori: " + str(time_original) + " Time CQM: " + str(time_cqm) + "\n")
+    f.write("len Ori: " + str(len(solution_original)) + " len CQM: " + str(len(solution_cqm)))
+    f.write(" Time Ori: " + str(time_original) + " Time CQM: " + str(time_cqm) + "\n")
     #assert len(solution_cqm) == len(solution_original)
 f.close()
