@@ -26,7 +26,7 @@ def maximum_clique_cqm(G):
 
     bqm, invert = dimod.cqm_to_bqm(cqm)
     
-    sampler = DWaveSampler(api_key="DEV-75e04bc20be5cf5bc8a7d7924d08952738e2cefe")
+    sampler = DWaveSampler(api_key="DEV-06975103e50142c4c36d07209c087d532ed6bcce")
     embedding_sampler = AutoEmbeddingComposite(sampler)
     sampleset = embedding_sampler.sample(bqm,num_reads = 100)
     
