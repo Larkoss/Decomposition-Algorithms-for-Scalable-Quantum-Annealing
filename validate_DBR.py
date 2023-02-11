@@ -1,9 +1,9 @@
 
 from DBR import DBR
 import networkx as nx
-import random
 from MVC_CQM import minimum_vertex_cover_cqm
 import copy
+import time
 
 def maximum_clique_exact_solve_np_hard(G_in):
 	max_clique_number = nx.graph_clique_number(G_in)
@@ -20,7 +20,7 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 
 f = open("results.txt", "w")
 
-for i in range(38):
+for i in range(10):
     
     G = nx.gnp_random_graph(i * 5 + 10, 0.2)
     G2 = copy.deepcopy(G)
@@ -28,18 +28,25 @@ for i in range(38):
     print("Original solution solution")
     print("Graph size: ", len(G), "\n")
     #soln = len(minimum_vertex_cover_exact_solve_np_hard(G2))
+    start = time.time()
     solution_original = DBR(G, 20, minimum_vertex_cover_exact_solve_np_hard)
+    end = time.time()
+    time_original = end - start
     #assert len(solution) == soln
     
     print("CQM solution")
     print("Graph size: ", len(G2), "\n")
+    start = time.time()
     solution_cqm = DBR(G2, 20, minimum_vertex_cover_cqm)
+    end = time.time()
+    time_cqm = end - start
 
     print("Original solution: ", solution_original)
     print("Length of Original solution: ", len(solution_original), "\n")
     print("CQM solution: ", solution_cqm)
     print("Length of cqm solution: ", len(solution_cqm),"\n")
     #assert len(solution) == nx.graph_clique_number(G)
-    f.write("Original: " + str(solution_original) + " CQM: " + str(solution_cqm))
+    f.write("len Ori: " + str(len(solution_original)) + "len CQM: " + str(len(solution_cqm)))
+    f.write("Time Ori: " + str(time_original) + " Time CQM: " + str(time_cqm) + "\n")
     #assert len(solution_cqm) == len(solution_original)
 f.close()
