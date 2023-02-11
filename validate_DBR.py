@@ -20,7 +20,7 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 
 f = open("results.txt", "w")
 
-for i in range(10):
+for i in range(15):
     
     G = nx.gnp_random_graph(i * 5 + 10, 0.2)
     G2 = copy.deepcopy(G)
