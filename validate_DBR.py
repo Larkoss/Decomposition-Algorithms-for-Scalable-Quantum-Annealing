@@ -18,9 +18,9 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 	MC = maximum_clique_exact_solve_np_hard(GC)
 	return list(set(nodes)-set(MC))
 
-f = open("results.txt", "w")
+f = open("results-test.txt", "w")
 
-for i in range(38):
+for i in range(7):
     
     G = nx.gnp_random_graph(i * 5 + 10, 0.2)
     G2 = copy.deepcopy(G)
