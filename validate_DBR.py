@@ -18,7 +18,7 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 	MC = maximum_clique_exact_solve_np_hard(GC)
 	return list(set(nodes)-set(MC))
 
-f = open("results-limit.txt", "w")
+f = open("chimera.txt", "w")
 
 for j in range(10):
     for i in range(23): #10 - 125

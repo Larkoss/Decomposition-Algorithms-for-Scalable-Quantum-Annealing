@@ -4,6 +4,7 @@ from dimod import ConstrainedQuadraticModel
 from dimod import Binary
 from dwave.system import DWaveSampler,AutoEmbeddingComposite
 from itertools import combinations
+import dwave.inspector
 
 def minimum_vertex_cover_cqm(G):
 
@@ -22,9 +23,12 @@ def minimum_vertex_cover_cqm(G):
             
     bqm, invert = dimod.cqm_to_bqm(cqm)
     
-    sampler = DWaveSampler()
+    #sampler = DWaveSampler()
+    sampler = DWaveSampler(solver={'topology__type': 'chimera'})
     embedding_sampler = AutoEmbeddingComposite(sampler)
     sampleset = embedding_sampler.sample(bqm,num_reads = 100)
+
+    #dwave.inspector.show(sampleset)
 
 
     for smpl, energy in sampleset.data(['sample','energy']):
