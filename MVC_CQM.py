@@ -4,7 +4,7 @@ from dimod import ConstrainedQuadraticModel
 from dimod import Binary
 from dwave.system import DWaveSampler,AutoEmbeddingComposite
 from itertools import combinations
-import dwave.inspector
+#import dwave.inspector
 
 def minimum_vertex_cover_cqm(G):
 
