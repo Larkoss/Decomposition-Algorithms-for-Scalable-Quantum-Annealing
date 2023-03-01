@@ -22,7 +22,7 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 f = open("density.txt", "w")
 for i in range(8): #10 - 125
     
-    G = nx.gnp_random_graph(50, 0.1 + i * 0.1) 
+    G = nx.gnp_random_graph(120, 0.1 + i * 0.1) 
     G2 = copy.deepcopy(G)
     G3 = copy.deepcopy(G)
 
