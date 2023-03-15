@@ -1,0 +1,8 @@
+len Ori: 53 len pegasus: 53 len chimera: 53 Time Ori: 10.664945125579834 Time pegasus: 14.174171924591064 Time chimera: 10.78189992904663 Limit: 10
+len Ori: 61 len pegasus: 61 len chimera: 61 Time Ori: 19.645798921585083 Time pegasus: 19.615092992782593 Time chimera: 19.8000807762146 Limit: 10
+len Ori: 66 len pegasus: 66 len chimera: 66 Time Ori: 19.219738245010376 Time pegasus: 19.268991231918335 Time chimera: 19.171469926834106 Limit: 10
+len Ori: 69 len pegasus: 69 len chimera: 69 Time Ori: 9.267795085906982 Time pegasus: 10.090405464172363 Time chimera: 9.956110954284668 Limit: 10
+len Ori: 71 len pegasus: 71 len chimera: 71 Time Ori: 3.869816303253174 Time pegasus: 3.916069984436035 Time chimera: 4.141727447509766 Limit: 10
+len Ori: 73 len pegasus: 73 len chimera: 73 Time Ori: 2.1420786380767822 Time pegasus: 2.196319341659546 Time chimera: 2.113401174545288 Limit: 10
+len Ori: 74 len pegasus: 74 len chimera: 74 Time Ori: 1.1225664615631104 Time pegasus: 1.0542120933532715 Time chimera: 1.4243485927581787 Limit: 10
+len Ori: 75 len pegasus: 75 len chimera: 75 Time Ori: 0.8368349075317383 Time pegasus: 6.48092794418335 Time chimera: 0.8181419372558594 Limit: 10

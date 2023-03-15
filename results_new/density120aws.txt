@@ -1,0 +1,1 @@
+len Ori: 69 len pegasus: 69 len chimera: 69 Time Ori: 1379.1646173000336 Time pegasus: 1445.5200762748718 Time chimera: 1440.3387246131897 Limit: 10 Den: 0.1
