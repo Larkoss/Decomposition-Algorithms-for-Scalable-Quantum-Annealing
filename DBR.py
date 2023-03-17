@@ -1,4 +1,5 @@
 import networkx as nx
+import time
 
 def is_clique(G):
 	"""
@@ -192,6 +193,9 @@ def DBR(graph, LIMIT, solver_function):
 	NOTES:
 	 - There are many assert statements in this function. These all serve as "sanity checks"; if any of them are tripped, something went wrong or an input was incorrect
 	"""
+	f = open("test-times.txt", "a")
+	timePartitioning = 0
+	timeSolver = 0 
 	assert type(graph) is nx.Graph
 	assert type(LIMIT) is int
 	assert len(graph) != 0
@@ -200,10 +204,15 @@ def DBR(graph, LIMIT, solver_function):
 	if len(graph) <= LIMIT:
 		print("=== Input Graph Size is Smaller than LIMIT ===")
 		print("=== Calling Solver Function ===")
-		k = solver_function(graph)
+		k = solver_function(graph)		
 		print("=== Finished DBR Algorithm ===")
 		return k
+	startPartitioning = time.time()
 	graph = remove_zero_degree_nodes(graph)
+	# stopPartitioning = time.time()
+	# timePartitioning = timePartitioning + stopPartitioning - startPartitioning
+
+	# startPartitioning = time.time()
 	assert len(graph) != 0
 	if is_vertex_cover(G, list(graph.nodes())) == True:
 		upper = len(vc_upper_bound(graph))
@@ -212,6 +221,9 @@ def DBR(graph, LIMIT, solver_function):
 			print("=== Input Graph with no zero degree nodes is the global Minimum Vertex Cover ===")
 			print("=== No Solver Function Call Required ===")
 			print("=== Finished DBR Algorithm ===")
+			
+			stopPartitioning = time.time()
+			timePartitioning = timePartitioning + stopPartitioning - startPartitioning
 			return list(graph.nodes())
 	graph, vars = vertex_cover_reduction(graph)
 	if len(graph) == 0:
@@ -219,13 +231,24 @@ def DBR(graph, LIMIT, solver_function):
 		print("=== NBVR found the Minimum Vertex Cover ===")
 		print("=== No Solver Function Call Required ===")
 		print("=== Finished DBR Algorithm ===")
+		stopPartitioning = time.time()
+		timePartitioning = timePartitioning + stopPartitioning - startPartitioning
 		return vars
 	vertex_removal = {graph: vars}
 	if len(graph) <= LIMIT:
 		print("=== After NBVR the Graph Size is Smaller than LIMIT ===")
 		print("=== Calling Solver Function ===")
+		stopPartitioning = time.time()
+		timePartitioning = timePartitioning + stopPartitioning - startPartitioning
+
+		startSolver = time.time()
 		k = solver_function(graph)+vertex_removal[graph]
+		stopSolver= time.time()
+		timeSolver = timeSolver + stopSolver - startSolver
 		print("=== Finished DBR Algorithm ===")
+		
+		# stopPartitioning = time.time()
+		# timePartitioning = timePartitioning + stopPartitioning - startPartitioning
 		return k
 	k = vc_upper_bound(graph)+vertex_removal[graph]
 	assert is_vertex_cover(G, k) == True
@@ -268,7 +291,16 @@ def DBR(graph, LIMIT, solver_function):
 			if SSG_lower < len(k):
 				if len(SSG) <= LIMIT:
 					print("=== Calling Solver Function ===")
+					stopPartitioning = time.time()
+					timePartitioning = timePartitioning + stopPartitioning - startPartitioning
+
+					startSolver = time.time()
 					sub_solution_SSG = solver_function(SSG)+vertex_removal[SSG]
+					stopSolver = time.time()
+					timeSolver = timeSolver + stopSolver - startSolver
+					
+					
+					startPartitioning = time.time()
 					del vertex_removal[SSG]
 					assert is_vertex_cover(G, sub_solution_SSG) == True
 					if len(sub_solution_SSG) < len(k):
@@ -294,7 +326,15 @@ def DBR(graph, LIMIT, solver_function):
 			if SG_lower < len(k):
 				if len(SG) <= LIMIT:
 					print("=== Calling Solver Function ===")
+					stopPartitioning = time.time()
+					timePartitioning = timePartitioning + stopPartitioning - startPartitioning
+
+					startSolver = time.time()
 					sub_solution_SG = solver_function(SG)+vertex_removal[SG]
+					stopSolver = time.time()
+					timeSolver = timeSolver + stopSolver - startSolver
+
+					startPartitioning = time.time()
 					del vertex_removal[SG]
 					assert is_vertex_cover(G, sub_solution_SG) == True
 					if len(sub_solution_SG) < len(k):
@@ -312,4 +352,8 @@ def DBR(graph, LIMIT, solver_function):
 					k = sub_solution_SG
 	assert len(vertex_removal) == 0
 	print("=== Finished DBR Algorithm ===")
+	stopPartitioning = time.time()
+	timePartitioning = timePartitioning + stopPartitioning - startPartitioning
+	f.write(" timePartitioning = " + str(timePartitioning) + " timeSolver = " + str(timeSolver) + "\n")
+	f.close()
 	return k
