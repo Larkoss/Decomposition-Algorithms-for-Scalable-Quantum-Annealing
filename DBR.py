@@ -193,7 +193,7 @@ def DBR(graph, LIMIT, solver_function):
 	NOTES:
 	 - There are many assert statements in this function. These all serve as "sanity checks"; if any of them are tripped, something went wrong or an input was incorrect
 	"""
-	f = open("test-times.txt", "a")
+	f = open("test-partitioning.txt", "a")
 	timePartitioning = 0
 	timeSolver = 0 
 	assert type(graph) is nx.Graph
@@ -260,7 +260,7 @@ def DBR(graph, LIMIT, solver_function):
 		vcount = vertex_removal[SG]
 		del vertex_removal[SG]
 		vertex = highest_degree_vertex(SG)
-		print("=== Partitioning Subgraph ===")
+		#print("=== Partitioning Subgraph ===")
 		SSG, SG, halo = vc_partitioning(vertex, SG)
 		SSG, SSG_vars = vertex_cover_reduction(SSG)
 		SG, SG_vars = vertex_cover_reduction(SG)

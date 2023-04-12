@@ -26,16 +26,16 @@ def minimum_vertex_cover_exact_solve_np_hard(G):
 #f = open("test.txt", "a")
 for i in range(1): #20 - 125
     for j in range(3): #0.1 - 0.9
+        num_nodes = 80 + i * 5
+        num_density = 0.1 + j * 0.1
+        G = nx.gnp_random_graph(num_nodes, num_density) 
+        pos = nx.spring_layout(G)  # compute the node positions
         for x in range(3): #10-25
             f = open("test.txt", "a")
 
-            num_nodes = 100 + i * 5
-            num_density = 0.1 + j * 0.1
+            print(G)
+
             num_limit = 10 + x * 5
-
-
-            #G = nx.gnp_random_graph(100 + i * 5, 0.1 + j * 0.1)
-            G = nx.gnp_random_graph(num_nodes, num_density)  
             G1 = copy.deepcopy(G) 
             G2 = copy.deepcopy(G)
             G3 = copy.deepcopy(G)
@@ -46,14 +46,15 @@ for i in range(1): #20 - 125
                 G4.add_edge(u, v)
 
             plt.clf()
-            print("jgrapht solution")
+            print("\njgrapht solution")
             print("Graph size: ", len(G), "\n")
             start = time.time()
             solution_jgrapht = jgrapht.algorithms.vertexcover.exact(G4)
             solution_jgrapht = solution_jgrapht[1]
             end = time.time()
             time_jgrapht = end - start
-            pos = nx.spring_layout(G)  # compute the node positions
+            
+            
             nx.draw_networkx_nodes(G, pos, nodelist=solution_jgrapht, node_color='blue')
             nx.draw_networkx_nodes(G, pos, nodelist=set(G.nodes()) - set(solution_jgrapht), node_color='grey')
             nx.draw_networkx_edges(G, pos)  # draw the edges
@@ -62,7 +63,7 @@ for i in range(1): #20 - 125
 
             plt.clf()
             print("Original solution's solution")
-            print("Graph size: ", len(G), "\n")
+            print("Graph size: ", len(G1))
             #soln = len(minimum_vertex_cover_exact_solve_np_hard(G2))
             start = time.time()
             solution_original = DBR(G1, num_limit, minimum_vertex_cover_exact_solve_np_hard)
@@ -76,8 +77,8 @@ for i in range(1): #20 - 125
             plt.savefig('Nodes' + str(num_nodes) + 'density' + str(int(num_density * 10)) + 'limit' + str(num_limit) + 'original.png', dpi=300, bbox_inches='tight')
             
             plt.clf()
-            print("Pegasus solution")
-            print("Graph size: ", len(G2), "\n")
+            print("\nPegasus solution")
+            print("Graph size: ", len(G2))
             start = time.time()
             solution_pegasus = DBR(G2, num_limit, minimum_vertex_cover_pegasus)
             end = time.time()
@@ -89,8 +90,8 @@ for i in range(1): #20 - 125
             plt.savefig('Nodes' + str(num_nodes) + 'density' + str(int(num_density * 10)) + 'limit' + str(num_limit) + 'pegasus.png', dpi=300, bbox_inches='tight')
 
             plt.clf()
-            print("Chimera solution")
-            print("Graph size: ", len(G3), "\n")
+            print("\nChimera solution")
+            print("Graph size: ", len(G3))
             start = time.time()
             solution_chimera = DBR(G3, num_limit, minimum_vertex_cover_chimera)
             end = time.time()
@@ -110,7 +111,7 @@ for i in range(1): #20 - 125
             print("Chimera solution: ", solution_chimera)
             print("Length of chimera solution: ", len(solution_chimera),"\n")
             #assert len(solution) == nx.graph_clique_number(G)
-            f.write("len jgrapht: " + str(len(solution_jgrapht)) + "len Ori: " + str(len(solution_original)) + " len pegasus: " + str(len(solution_pegasus)) + " len chimera: " + str(len(solution_chimera)))
+            f.write("len jgrapht: " + str(len(solution_jgrapht)) + " len Ori: " + str(len(solution_original)) + " len pegasus: " + str(len(solution_pegasus)) + " len chimera: " + str(len(solution_chimera)))
             f.write(" Time jgrapht: " + str(time_jgrapht) + " Time Ori: " + str(time_original) + " Time pegasus: " + str(time_pegasus) + " Time chimera: " + str(time_chimera))
             f.write(" Limit: " + str(10) + "\n")           
             #assert len(solution_pegasus) == len(solution_original)
