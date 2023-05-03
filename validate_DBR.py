@@ -112,8 +112,7 @@ for i in range(1): #20 - 125
             print("Length of chimera solution: ", len(solution_chimera),"\n")
             #assert len(solution) == nx.graph_clique_number(G)
             f.write("len jgrapht: " + str(len(solution_jgrapht)) + " len Ori: " + str(len(solution_original)) + " len pegasus: " + str(len(solution_pegasus)) + " len chimera: " + str(len(solution_chimera)))
-            f.write(" Time jgrapht: " + str(time_jgrapht) + " Time Ori: " + str(time_original) + " Time pegasus: " + str(time_pegasus) + " Time chimera: " + str(time_chimera))
-            f.write(" Limit: " + str(10) + "\n")           
+            f.write(" Time-jgrapht: " + str(time_jgrapht) + " Time-Ori: " + str(time_original) + " Time-pegasus: " + str(time_pegasus) + " Time-chimera: " + str(time_chimera))
+            f.write(" L: " + str(num_limit) + " D: " + str(num_density) + " N: " + str(num_nodes) + "\n")           
             #assert len(solution_pegasus) == len(solution_original)
             f.close()
-
